@@ -6,10 +6,15 @@
 int csplit(lua_State *state) {
   lua_newtable(state);
 
-  int index = 1;
+  size_t index = 1;
   const char *end;
   const char *start = luaL_checkstring(state, 1);
-  const char *seperator = luaL_checkstring(state, 2);
+  size_t delimiter_length = 0;
+  const char *seperator = luaL_checklstring(state, 2, &delimiter_length);
+  if (delimiter_length != 1) {
+    // TODO: Handle multi-character delimiters
+    luaL_error(state, "WIP: cannot split on multi-character delimiter");
+  }
 
   while ((end = strchr(start, *seperator)) != NULL) {
     lua_pushlstring(state, start, end - start);
