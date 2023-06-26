@@ -6,6 +6,7 @@ source = {
 }
 description = {
    homepage = "https://github.com/isavegas/lua_csplit",
+   summary = "C implementation of a split function.",
    license = "MIT"
 }
 dependencies = {
